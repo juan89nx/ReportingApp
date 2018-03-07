@@ -1,0 +1,319 @@
+ 
+{% extends "pages/baseBack.html" %}
+
+{% block title %}Sistema Facturacion{% endblock %}
+ 
+ {% block content %}
+ 
+ {% load static %}
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Reporting</title>
+
+    <!-- Custom styles for this template -->
+   	<link href="{% static 'css/shop-item.css' %}" rel="stylesheet">
+    
+  </head>
+  
+  <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Reporting</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-lg-3">
+          <div  class="row">
+            <div class="col-lg-6">
+              <div class="list-group my-4">
+                <!-- <a href="#" class="list-group-item">Guardar</a> -->
+                <input id="guardar" type="submit" class="btn btn-outline btn-default btn-lg" value="Guardar" data-toggle="tooltip" data-placement="left" title="Guarda el trabajo realizado hasta el momento."/>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="list-group my-4">
+                <!-- <a href="#" class="list-group-item">Descargar</a> -->
+	                <form action="cierreToPDF/">
+	                    <input id="ToPDF" type="submit" class="btn btn-outline btn-default btn-lg" value="Descargar" data-toggle="tooltip" data-placement="left" title="Descarga el Reporte."/>
+	                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6"> 
+        <!-- Espacio del medio -->
+        </div>
+        <div class="col-lg-3">
+          <div  class="row">
+            <div class="col-lg-6">
+              <div class="list-group my-4">
+                <!-- <a href="#" class="list-group-item">Fecha</a> -->
+                <input id="fecha" type="submit" class="btn btn-outline btn-default btn-lg" value="Fecha" data-toggle="tooltip" data-placement="left" title="??????????????????."/>
+              </div>
+              
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  				Launch demo modal
+			  </button>
+              
+              
+            </div>
+            <div class="col-lg-6">
+              <div class="list-group my-4">
+                <!-- <a href="#" class="list-group-item">Datos</a> -->
+                <input id="datos" type="submit" class="btn btn-outline btn-default btn-lg" value="Datos" data-toggle="tooltip" data-placement="left" title="????????"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3">
+          <h2 class="my-4">Métricas Performance</h2>
+        </div>
+
+        <div class="col-lg-6">
+        </div>
+
+        <div class="col-lg-3">
+          <h2 class="my-4">Métricas Social</h2>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-lg-3">
+
+          <div class="list-group card-body dropdown">
+            <a class="btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Google Adwords
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Impresiones</a>
+              <a class="dropdown-item" href="#">Clicks</a>
+              <a class="dropdown-item" href="#">CTR</a>
+              <a class="dropdown-item" href="#">Posición promedio</a>
+              <a class="dropdown-item" href="#">Conversiones</a>
+              <a class="dropdown-item" href="#">Selecciones de Red (Google Search, Display, Search Partners)</a>
+              <a class="dropdown-item" href="#">Tipo de click (Headline, Sitelink, PhoneCalls)</a>
+              <a class="dropdown-item" href="#">Rendimiento por momentos (Dias/Horas)</a>
+              <a class="dropdown-item" href="#">Rendimiento por campañas (Campañas, Adgroup, Keywords)</a>
+            </div>
+          </div>
+
+          <div class="list-group card-body dropdown">
+            <a class="btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Google Analytics
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+            </div>
+          </div>
+
+          <div class="list-group card-body dropdown">
+            <a class="btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Email Marketing
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+            </div>
+          </div>
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-6">
+          <div class="card mt-4">
+            <div class="card-body">
+              <h3 class="card-title">Reporte </h3>
+              <h4>Información de las Campañas de la cuenta:</h4>
+              <p class="card-text"></p>
+
+
+
+<div class="panel-body">
+             <!-- Table -->
+              <table class="table table-hover" id="tablaClients">
+                <thead>
+                  <td><strong>Nº de Campaña</strong></td>
+                  <td><strong>Nombre</strong></td>
+                  <td><strong>Estado de Campaña</strong></td>
+                  <td><strong>Cliks</strong></td>
+                  <td><strong>Impresiones</strong></td>
+                  <td><strong>CTR</strong></td>
+                </thead>
+                <tbody>
+              {% for caja in all_cajas %}
+                  <tr>
+                    <td><strong><a href=""> {{ caja.id }} </a> </strong></td>
+                    <td><strong><a href=""> {{ caja.name }} </a> </strong></td>
+                    <td><strong><a href=""> {{ caja.status }} </a> </strong></td>
+                    <td><strong><a href=""> 0 </a> </strong></td>
+                    <td><strong><a href=""> 0 </a> </strong></td>
+                    <td><strong><a href=""> 0% </a> </strong></td>
+                    {% if caja.estado == 'ABIERTA' %}
+                      <td>
+                        <!-- 
+                        <input id="generarInformeX" type="button" class="btn btn-default btn-sm" value="Generar Inf. X" data-toggle="tooltip" data-placement="left" title="Esta opción hará un cierre de caja provisional, lo cual indica que al realizarlo podremos ver el importe recaudado hasta el momento y seguir trabajando en la venta de ticket sin cerrar el arqueo."/>
+                        -->
+                       
+                        <a href="/back_end/verCierre/caja-{{caja.id}}" class="btn btn-default glyphicon glyphicon-search" data-toggle="tooltip" data-placement="left" title="Esta opción hará un cierre de caja provisional, lo cual indica que al realizarlo podremos ver el importe recaudado hasta el momento y seguir trabajando en la venta de ticket sin cerrar el arqueo."></a>
+                      </td>
+                    {% else %}
+                      <td>
+                      <!-- 
+                        <button type="button" class="btn btn-default glyphicon glyphicon-search disabled"  data-toggle="tooltip" data-placement="left" title="Esta opción hará un cierre de caja provisional, lo cual indica que al realizarlo podremos ver el importe recaudado hasta el momento y seguir trabajando en la venta de ticket sin cerrar el arqueo."></button>
+                         -->
+                        <!-- 
+                        <input id="generarInformeXblockeado" type="button" class="btn btn-default glyphicon glyphicon-search" value="glyphicon glyphicon-search" data-toggle="tooltip" data-placement="left" title="Esta opción hará un cierre de caja provisional, lo cual indica que al realizarlo podremos ver el importe recaudado hasta el momento y seguir trabajando en la venta de ticket sin cerrar el arqueo." disabled/>
+                         -->
+                      </td>
+                    {% endif %}
+                    
+                  </tr>
+              {% endfor %}
+                </tbody>
+              </table>  
+            </div>
+            
+            
+            
+            </div>
+          </div>
+          <!-- /.card -->
+          
+          <div class="card card-outline-secondary my-4">
+            <div class="card-body">
+              <div class="row">
+              
+                <div class="col-lg-3">
+                  <!-- <a href="#" class="list-group-item">Gráfica</a> -->
+                  <button type="button" class="btn btn-default navbar-btn">Gráfica</button>
+                </div>
+
+                <div class="col-lg-3">
+                  <!-- <a href="#" class="list-group-item">Imagen</a> -->
+                  <button type="button" class="btn btn-default navbar-btn">Imagen</button>
+                </div>
+                <div class="col-lg-3">
+                  <!-- <a href="#" class="list-group-item">Tabla</a>  -->
+                  <button type="button" class="btn btn-default navbar-btn">Tabla</button>
+                </div>
+
+                <div class="col-lg-3">
+                  <!-- <a href="#" class="list-group-item">Deshacer</a> -->
+                  <button type="button" class="btn btn-default navbar-btn">Deshacer</button>
+                </div>
+                <div class="col-lg-3">
+                  <!-- <a href="#" class="list-group-item">KPIs</a> -->
+                  <button type="button" class="btn btn-default navbar-btn">KPIs</button>
+                </div>
+                <div class="col-lg-3">
+                  <!-- <a href="#" class="list-group-item">Texto</a>  -->
+                  <button type="button" class="btn btn-default navbar-btn">Texto</button>
+                </div>
+                <div class="col-lg-3">
+                  <!-- <a href="#" class="list-group-item">Pagina</a>  -->
+                  <button type="button" class="btn btn-default navbar-btn">Pagina</button>
+                </div>
+		</div>
+		</div>
+</div>
+		
+		
+
+
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+        <div class="col-lg-3">
+
+
+          <div class="list-group card-body dropdown">
+            <a class="btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Facebook Ads
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+            </div>
+          </div>
+
+          <div class="list-group card-body dropdown">
+            <a class="btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Twitter Ads
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+            </div>
+          </div>
+
+          <div class="list-group card-body dropdown">
+            <a class="btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Linkedin Ads
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+            </div>
+          </div>
+
+          <div class="list-group card-body dropdown">
+            <a class="btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Youtube Ads
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+            </div>
+          </div>
+        </div>
+        <!-- /.col-lg-3 -->
+      </div>
+    </div>
+    <!-- /.container -->
+
+
+
+
+
+            
+	{% endblock %}
+
+{% block encabezado %}
+
+  </body>
+{% endblock %}

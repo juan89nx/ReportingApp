@@ -83,9 +83,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'reportingApp',
         'USER': 'postgres',
-        'PASSWORD': 'admin',
+        'PASSWORD': 'pgadmin',
         'HOST': 'localhost',
-        'PORT':'5432', 
+        'PORT':'5433', 
     }
 }
 
@@ -131,7 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'ReportingApp\static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'ReportingApp/static')
 
 ROLEPERMISSIONS_MODULE = 'ReportingApp.roles'
 

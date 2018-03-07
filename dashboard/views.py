@@ -34,11 +34,11 @@ def login_success(request):
 
 def home(request):
      
-     context = {
-    
-    }
+     context = {}
      
-     return render(request, 'pages/home.html', context)
+     context = get_context_data(request)
+     
+     return render(request, 'pages/index.html', context)
 
 #User signup - Registro
 from django.contrib.auth import login, authenticate
@@ -58,4 +58,75 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'pages/signup.html', {'form': form})
+
+
+#--------------------*--------------------*------------------------#
+
+from googleads import adwords
+from dashboard import get_campaigns
+from django.template.loader import get_template
+from ReportingApp.utils import render_to_pdf
+from dashboard.forms import GetReportingForm 
+
+
+def get_context_data(request):
+
+    context ={}
+    try:
+        simpleList = []
+        simpleList = get_campaigns.getCampaigns()
+        context ={'all_cajas' : simpleList}
+    except Exception as e:
+        print (e)
+     
+    return context    
+    #return render(request, 'pages/index.html', context)
+
+def campaignsToPDF(request, *args, **kwargs):
+    
+    class SimpleClass(object):
+        pass
+    
+    campanias  = []
+    campanias = get_campaigns.getCampaigns()
+    context = {
+        'campanias': campanias,
+    } 
+
+    template = get_template ('pdf/campaigns.html')
+    html = template.render(context)
+    pdf = render_to_pdf('pdf/campaigns.html', context)
+    if pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        filename = "InformeX_cierre%s.pdf" #%(cierre_id)
+        content = "inline; filename='%s'" %(filename)
+        download = request.GET.get("download")
+        response['content-Disposition'] = content
+        return response
+    else:
+        return HttpResponse("Not Found")  
+
+def getReporting(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = GetReportingForm(request.POST)
+        print(form)
+        
+        errors = []
+        error = False
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # redirect to a new URL:
+            observaciones = form.cleaned_data['observaciones']
+            
+            # Initialize the AdWords client.
+            adwords_client = adwords.AdWordsClient.LoadFromStorage()
+            
+            
+            return render(request, 'reporting/index.html', {'errors': errors})
+        else:
+            errors.append("No existe un dia de trabajo creado.")
+            return render(request, 'reporting/index.html', {'errors': errors})
 
