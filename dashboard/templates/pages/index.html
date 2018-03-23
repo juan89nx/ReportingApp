@@ -16,7 +16,8 @@
 
     <!-- Custom styles for this template -->
    	<link href="{% static 'css/shop-item.css' %}" rel="stylesheet">
-    
+
+ <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
   </head>
   
   <body>
@@ -62,8 +63,11 @@
             <div class="col-lg-6">
               <div class="list-group my-4">
                 <!-- <a href="#" class="list-group-item">Fecha</a> -->
-                <input id="fecha" type="submit" class="btn btn-outline btn-default btn-lg" value="Fecha" data-toggle="tooltip" data-placement="left" title="??????????????????."/>
-              </div>
+                <div class="dropdown show">
+ 
+  <input type="text" name="daterange" value="01/01/2015 - 01/31/2015" />
+  
+</div></div>
               
             </div>
             <div class="col-lg-6">
@@ -150,38 +154,7 @@
                   <td><strong>Cliks</strong></td>
                   <td><strong>Impresiones</strong></td>
                   <td><strong>CTR</strong></td>
-                </thead>
-                <tbody>
-              {% for caja in all_cajas %}
-                  <tr>
-                    <td><strong><a href=""> {{ caja.id }} </a> </strong></td>
-                    <td><strong><a href=""> {{ caja.name }} </a> </strong></td>
-                    <td><strong><a href=""> {{ caja.status }} </a> </strong></td>
-                    <td><strong><a href=""> 0 </a> </strong></td>
-                    <td><strong><a href=""> 0 </a> </strong></td>
-                    <td><strong><a href=""> 0% </a> </strong></td>
-                    {% if caja.estado == 'ABIERTA' %}
-                      <td>
-                        <!-- 
-                        <input id="generarInformeX" type="button" class="btn btn-default btn-sm" value="Generar Inf. X" data-toggle="tooltip" data-placement="left" title="Esta opción hará un cierre de caja provisional, lo cual indica que al realizarlo podremos ver el importe recaudado hasta el momento y seguir trabajando en la venta de ticket sin cerrar el arqueo."/>
-                        -->
-                       
-                        <a href="/back_end/verCierre/caja-{{caja.id}}" class="btn btn-default glyphicon glyphicon-search" data-toggle="tooltip" data-placement="left" title="Esta opción hará un cierre de caja provisional, lo cual indica que al realizarlo podremos ver el importe recaudado hasta el momento y seguir trabajando en la venta de ticket sin cerrar el arqueo."></a>
-                      </td>
-                    {% else %}
-                      <td>
-                      <!-- 
-                        <button type="button" class="btn btn-default glyphicon glyphicon-search disabled"  data-toggle="tooltip" data-placement="left" title="Esta opción hará un cierre de caja provisional, lo cual indica que al realizarlo podremos ver el importe recaudado hasta el momento y seguir trabajando en la venta de ticket sin cerrar el arqueo."></button>
-                         -->
-                        <!-- 
-                        <input id="generarInformeXblockeado" type="button" class="btn btn-default glyphicon glyphicon-search" value="glyphicon glyphicon-search" data-toggle="tooltip" data-placement="left" title="Esta opción hará un cierre de caja provisional, lo cual indica que al realizarlo podremos ver el importe recaudado hasta el momento y seguir trabajando en la venta de ticket sin cerrar el arqueo." disabled/>
-                         -->
-                      </td>
-                    {% endif %}
-                    
-                  </tr>
-              {% endfor %}
-                </tbody>
+                </thead>    </tbody>
               </table>  
             </div>
             
@@ -297,10 +270,28 @@
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 -->
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<!--  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+-->
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 
+
+
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
+
+
+<script type="text/javascript">
+	$(function() {
+	    $('input[name="daterange"]').daterangepicker();
+	});
+</script>
   </body>
 
 </html>
