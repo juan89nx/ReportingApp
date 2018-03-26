@@ -20,6 +20,47 @@
  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
   </head>
   
+  
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Datos Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+    	  	<label for="sel1">Select Source:</label>
+		  	<select class="form-control" id="sel1">
+		   	 	<option>Adwords</option>
+		    	<option>Facebook</option>
+		    	<option>Twitter</option>
+		    	<option>LinkedIn</option>
+		  	</select>
+  		</div>
+        <div class="form-group">
+    		<label for="email">User Name:</label>
+    		<input type="email" class="form-control" id="email">
+  		</div>
+  		<div class="form-group">
+    		<label for="pwd">Password:</label>
+    		<input type="password" class="form-control" id="pwd">
+  		</div>
+  		<div class="checkbox">
+    		<label><input type="checkbox"> Remember me</label>
+  		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
   <body>
 
     <!-- Navigation -->
@@ -60,21 +101,23 @@
         </div>
         <div class="col-lg-3">
           <div  class="row">
-            <div class="col-lg-6">
+            <div class="col-xs-8">
               <div class="list-group my-4">
                 <!-- <a href="#" class="list-group-item">Fecha</a> -->
                 <div class="dropdown show">
  
+ <label>Fecha</label>
   <input type="text" name="daterange" value="01/01/2015 - 01/31/2015" />
   
 </div></div>
               
             </div>
-            <div class="col-lg-6">
+            <div class="col-xs-4">
               <div class="list-group my-4">
                 <!-- <a href="#" class="list-group-item">Datos</a> -->
-                <input id="datos" type="submit" class="btn btn-outline btn-default btn-lg" value="Datos" data-toggle="tooltip" data-placement="left" title="????????"/>
-              </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  Datos
+</button></div>
             </div>
           </div>
         </div>
